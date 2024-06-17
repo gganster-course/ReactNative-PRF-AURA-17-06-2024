@@ -3,19 +3,21 @@ import {Text, StyleSheet, View} from "react-native";
 type MyFirstComponentProps = {
   text: string,
   number: number,
-  style?: object,
-  children?: React.ReactNode
+  containerStyle?: object,
+  textStyle?: object,
+  children?: React.ReactElement
 }
 
 const MyFirstComponent = ({
   children,
   text,
   number,
-  style = {}
+  containerStyle = {},
+  textStyle = {}
 } : MyFirstComponentProps) => {
   return (
-    <View>
-      <Text style={[style, styles.defaultText]}>
+    <View style={containerStyle}>
+      <Text style={[styles.defaultText, textStyle]}>
         MyFirstComponent {text} {number}
       </Text>
       {children}
