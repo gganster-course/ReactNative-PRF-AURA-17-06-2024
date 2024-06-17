@@ -1,11 +1,11 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Touchable} from 'react-native';
 import type {StyleProp, ViewStyle} from "react-native";
 
 type CardProps = {
   title: string,
   subtitle: string,
   children: string,
-  containerStyle?: StyleProp<ViewStyle>
+  containerStyle?: StyleProp<ViewStyle>,
 }
 
 const Card = (props : CardProps) => {

@@ -1,14 +1,22 @@
-import {StyleSheet, View, ScrollView, Text } from 'react-native';
+import {StyleSheet, View, ScrollView, Text, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MyFirstComponent from '@/components/MyFirstComponent';
 
 import Card from "@/components/Card";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function HomeScreen() {
+
+  const handleClick = () => {
+    console.log("clicked");
+  }
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView style={styles.container}>
-        <Text style={styles.text}>Hello world</Text>
+        <TouchableOpacity onPress={handleClick} onLongPress={() => {console.log("longpress")}}>
+          <Text style={styles.text}>Hello world</Text>
+        </TouchableOpacity>
 
         <MyFirstComponent text="my first props" number={2}>
           <Text>Child</Text>
