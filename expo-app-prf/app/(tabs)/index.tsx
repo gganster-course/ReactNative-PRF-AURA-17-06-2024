@@ -10,8 +10,9 @@ export default function HomeScreen() {
         <MyFirstComponent 
           text="my first props"
           number={2}
-          
-        />
+        >
+          <Text>Child</Text>
+        </MyFirstComponent>
       </View>
       <View style={styles.container2}>
 

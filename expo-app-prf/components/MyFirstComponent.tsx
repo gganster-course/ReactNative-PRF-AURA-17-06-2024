@@ -1,20 +1,25 @@
-import {Text, StyleSheet} from "react-native";
+import {Text, StyleSheet, View} from "react-native";
 
 type MyFirstComponentProps = {
   text: string,
   number: number,
-  style?: object
+  style?: object,
+  children?: React.ReactNode
 }
 
 const MyFirstComponent = ({
+  children,
   text,
   number,
   style = {}
 } : MyFirstComponentProps) => {
   return (
-    <Text style={[style, styles.defaultText]}>
-      MyFirstComponent {text} {number}
-    </Text>
+    <View>
+      <Text style={[style, styles.defaultText]}>
+        MyFirstComponent {text} {number}
+      </Text>
+      {children}
+    </View>
   )
 }
 
