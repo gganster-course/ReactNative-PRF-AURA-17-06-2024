@@ -1,19 +1,27 @@
-import {Text} from "react-native";
+import {Text, StyleSheet} from "react-native";
 
 type MyFirstComponentProps = {
   text: string,
-  number: number
+  number: number,
+  style?: object
 }
 
 const MyFirstComponent = ({
   text,
-  number
+  number,
+  style = {}
 } : MyFirstComponentProps) => {
   return (
-    <Text>
+    <Text style={[style, styles.defaultText]}>
       MyFirstComponent {text} {number}
     </Text>
   )
 }
+
+const styles = StyleSheet.create({
+  defaultText: {
+    color: "green",
+  }
+})
 
 export default MyFirstComponent;
