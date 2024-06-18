@@ -1,12 +1,10 @@
 import {useState, useEffect, useMemo} from "react";
-import {StyleSheet, View, ScrollView, Text, Alert, } from 'react-native';
+import {StyleSheet, View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import MyFirstComponent from '@/components/MyFirstComponent';
 import {Duration} from 'luxon';
+import { useInterval } from 'usehooks-ts'
 
-import Button, {ButtonType} from '@/components/Button';
-
-import Card from "@/components/Card";
+import Button from '@/components/Button';
 
 enum ChronoState {
   PLAYING,
@@ -16,16 +14,11 @@ enum ChronoState {
 export default function TabTwoScreen() {
   const [counter, setCounter] = useState(0);
   const [state, setState] = useState(ChronoState.PAUSED);
-  
-  useEffect(() => {
+
+  useInterval(() => {
     if (state === ChronoState.PAUSED) return;
-
-    const interval = setInterval(() => {
-      setCounter(prev => prev + 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [state]);
+    setCounter(prev => prev + 1);
+  }, state === ChronoState.PLAYING ? 1000 : null);
 
   const displayChrono = useMemo(() => (
     Duration.fromObject({seconds: counter}).toFormat("hh:mm:ss")
