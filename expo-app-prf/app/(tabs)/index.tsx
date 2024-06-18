@@ -9,40 +9,28 @@ import Card from "@/components/Card";
 
 export default function HomeScreen() {
   const [count, setCount] = useState(0);
-  const [object, setObject] = useState({name: "toto", age: 12});
-
-  const handleClick = () => {
-    console.log(count);
-    const newValue = count + 1;
-    setCount(newValue);
-
-    
-    //count pas encore mis à jour
-  }
-
-  const majObject = () => {
-    setObject({...object, name: "tata"}); //OK
-
-    //Interdit
-    object.name = "tata";
-    setObject(object);
-  }
-
-  const sentence = `Le compte est à ${count}`;
 
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView style={styles.container}>
-        <Card title="Test title" subtitle="1 April 2019">
+        <Card title="Our counter" subtitle="1 April 2019">
           Now this is the story all about how My life got
           flipped, turned upside down And l'd like to take
           a minute just sit right there l'Il tell you how I
           became the prince of a town called Bel-air.
         </Card>
-        <Text style={{fontSize: 48, textAlign: "center"}}>{sentence}</Text>
-        <Button onPress={handleClick} style={{margin: 20}}>
-          hello world
-        </Button>
+        <Text style={{fontSize: 48, textAlign: "center"}}>{count}</Text>
+        <View style={styles.actionsContainer}>
+          <Button onPress={() => setCount(0)} style={styles.actionButton}>
+            0
+          </Button>
+          <Button onPress={() => setCount(count - 1)} style={styles.actionButton}>
+            -
+          </Button>
+          <Button onPress={() => setCount(count + 1)} style={styles.actionButton}>
+            +
+          </Button>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -59,5 +47,14 @@ const styles = StyleSheet.create({
   text: {
     color: "red",
     fontSize: 38
+  },
+  actionsContainer: {
+    flexDirection: "row",
+    paddingHorizontal: 16,
+    marginTop: 16,
+    gap: 16,
+  },
+  actionButton: {
+    flex: 1
   }
 });
