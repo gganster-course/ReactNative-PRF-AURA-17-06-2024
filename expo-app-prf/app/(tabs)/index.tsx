@@ -1,3 +1,4 @@
+import {useState} from "react";
 import {StyleSheet, View, ScrollView, Text, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MyFirstComponent from '@/components/MyFirstComponent';
@@ -5,13 +6,29 @@ import MyFirstComponent from '@/components/MyFirstComponent';
 import Button, {ButtonType} from '@/components/Button';
 
 import Card from "@/components/Card";
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function HomeScreen() {
+  const [count, setCount] = useState(0);
+  const [object, setObject] = useState({name: "toto", age: 12});
 
   const handleClick = () => {
-    console.log("clicked");
+    console.log(count);
+    const newValue = count + 1;
+    setCount(newValue);
+
+    
+    //count pas encore mis à jour
   }
+
+  const majObject = () => {
+    setObject({...object, name: "tata"}); //OK
+
+    //Interdit
+    object.name = "tata";
+    setObject(object);
+  }
+
+  const sentence = `Le compte est à ${count}`;
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -22,10 +39,8 @@ export default function HomeScreen() {
           a minute just sit right there l'Il tell you how I
           became the prince of a town called Bel-air.
         </Card>
-        <Button onPress={() => console.log("click")} style={{margin: 20}}>
-          hello world
-        </Button>
-        <Button loading={true} type={ButtonType.Secondary} onPress={() => console.log("click")} style={{marginHorizontal: 20}}>
+        <Text style={{fontSize: 48, textAlign: "center"}}>{sentence}</Text>
+        <Button onPress={handleClick} style={{margin: 20}}>
           hello world
         </Button>
       </ScrollView>
