@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {StyleSheet, View, ScrollView, Text, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MyFirstComponent from '@/components/MyFirstComponent';
